@@ -1,0 +1,17 @@
+# Read the documentation at https://github.com/thephpleague/flysystem-bundle/blob/master/docs/1-getting-started.md
+services:
+    minio_dev_client:
+        class: 'AsyncAws\S3\S3Client'
+        arguments:
+            -  endpoint: 'http://minio:9000/test'
+               accessKeyId: 'root'
+               accessKeySecret: 'TestPassword12345'
+
+flysystem:
+    storages:
+        default.storage:
+            adapter: 'asyncaws'
+            # visibility: public # Make the uploaded file publicly accessible in S3
+            options:
+                client: 'minio_dev_client' # The service ID of the Aws\S3\S3Client instance
+                bucket: ''
