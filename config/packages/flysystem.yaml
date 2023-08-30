@@ -3,9 +3,10 @@ services:
     minio_dev_client:
         class: 'AsyncAws\S3\S3Client'
         arguments:
-            -  endpoint: 'http://minio:9000/test'
+            -  endpoint: 'http://minio:9000'
                accessKeyId: 'root'
                accessKeySecret: 'TestPassword12345'
+               pathStyleEndpoint: true
 
 flysystem:
     storages:
@@ -14,4 +15,4 @@ flysystem:
             # visibility: public # Make the uploaded file publicly accessible in S3
             options:
                 client: 'minio_dev_client' # The service ID of the Aws\S3\S3Client instance
-                bucket: ''
+                bucket: 'test'
